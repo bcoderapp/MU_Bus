@@ -27,7 +27,7 @@ This project leverages Python technologies for both the backend and frontend:
 - ✅ Get Notified
 - ✅ Response to Pool
 - ✅ Logout
-
+<!--
 ---
 
 ## 🧰 Tech Stack
@@ -138,3 +138,5 @@ Authorization: Bearer <token>
 ## 📬 Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+-->
