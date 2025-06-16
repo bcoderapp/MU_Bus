@@ -1,6 +1,7 @@
 <?php 
-include 'includes/header.php'; 
-include 'db.php'; 
+include '../../includes/header.php';
+include '../../includes/sidebar.php';
+include '../../db.php';
 
 // Validate and get schedule ID
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -44,10 +45,136 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $update->bind_param("sssssssi", $route, $arrival, $departure, $bus_no, $driver, $count, $comment, $id);
   $update->execute();
 
-  header("Location: dashboard.php?day=" . urlencode($day));
+  header("Location: ../bus_schedule.php?day=" . urlencode($day));
   exit;
 }
 ?>
+
+<style>
+body {
+  background: #f6f8fa;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.container {
+  max-width: 60%;
+  margin: 40px auto 0 auto;
+  padding: 32px 32px 24px 32px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(60,72,88,0.10);
+}
+
+h3 {
+  color: #1a237e;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+
+form {
+  margin-top: 0;
+}
+
+.form-label {
+  color: #283593;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1px solid #c5cae9;
+  padding: 10px 14px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  background: #f3f6fb;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #536dfe;
+  outline: none;
+  background: #e8eaf6;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #536dfe 0%, #1a237e 100%);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 28px;
+  margin-right: 10px;
+  box-shadow: 0 2px 8px rgba(83,109,254,0.08);
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #1a237e 0%, #536dfe 100%);
+}
+
+.btn-secondary {
+  background: #e3e6fd;
+  color: #1a237e;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.btn-outline-primary {
+  border: 1.5px solid #536dfe;
+  color: #536dfe;
+  background: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 8px 18px;
+  margin-left: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-outline-primary:hover {
+  background: #536dfe;
+  color: #fff;
+}
+
+.mb-3, .mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.p-4 {
+  padding: 2rem !important;
+}
+
+.bg-light {
+  background: #f3f6fb !important;
+}
+
+.shadow {
+  box-shadow: 0 2px 16px rgba(60,72,88,0.10) !important;
+}
+
+.alert {
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+
+.alert-danger {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+.alert-warning {
+  background: #fffde7;
+  color: #f9a825;
+  border: 1px solid #ffe082;
+}
+</style>
+
 
 <div class="container">
   <h3 class="text-primary fw-bold mb-4">✏️ Edit Schedule for <?= strtoupper(htmlspecialchars($day)) ?></h3>
@@ -124,8 +251,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Action Buttons -->
     <button class="btn btn-primary">Update Schedule</button>
-    <a href="dashboard.php?day=<?= urlencode($day) ?>" class="btn btn-secondary">Cancel</a>
+    <a href="../bus_schedule.php?day=<?= urlencode($day) ?>" class="btn btn-secondary">Cancel</a>
   </form>
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../../includes/footer.php'; ?>

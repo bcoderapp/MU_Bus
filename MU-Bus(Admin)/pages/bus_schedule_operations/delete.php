@@ -1,6 +1,7 @@
 <?php
-include 'includes/header.php';
-include 'db.php';
+include '../../includes/header.php';
+include '../../includes/sidebar.php';
+include '../../db.php';
 
 if (!isset($_GET['id'])) {
     echo "<div class='alert alert-danger'>Invalid request. No schedule ID provided.</div>";
@@ -29,6 +30,6 @@ $delete->bind_param("i", $id);
 $delete->execute();
 
 // Redirect back to the same day dashboard
-header("Location: dashboard.php?day=" . urlencode($day));
+header("Location: ../bus_schedule.php?day=" . urlencode($day));
 exit;
 ?>

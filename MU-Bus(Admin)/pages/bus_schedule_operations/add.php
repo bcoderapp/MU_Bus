@@ -1,6 +1,7 @@
 <?php 
-include 'includes/header.php'; 
-include 'db.php'; 
+include '../../includes/header.php';
+include '../../includes/sidebar.php';
+include '../../db.php';
 
 // Default day selection fallback
 $day = $_GET['day'] ?? 'Sunday';
@@ -27,15 +28,130 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->execute();
 
   // Redirect to dashboard after successful insertion
-  header("Location: dashboard.php?day=$day");
+  header("Location: ../bus_schedule.php?day=$day");
   exit();
 }
 ?>
 
-<div class="container">
-  <h3 class="text-primary fw-bold mb-4">+ Add New Schedule for <?= strtoupper($day) ?></h3>
+<style>
+body {
+  background: #f6f8fa;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.modern-container {
+  max-width: 50%;
+  margin: 40px auto 0 auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(60,72,88,0.10);
+  padding: 40px 32px 32px 32px;
+}
+
+.modern-container h3 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  margin-bottom: 32px;
+  color: #1a237e;
+  text-align: center;
+}
+
+.modern-form .form-label {
+  font-weight: 600;
+  color: #283593;
+  margin-bottom: 8px;
+}
+
+.modern-form .form-control, 
+.modern-form .form-select, 
+.modern-form textarea {
+  border-radius: 8px;
+  border: 1px solid #c5cae9;
+  padding: 10px 14px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  background: #f3f6fb;
+  transition: border-color 0.2s;
+}
+
+.modern-form .form-control:focus, 
+.modern-form .form-select:focus, 
+.modern-form textarea:focus {
+  border-color: #536dfe;
+  outline: none;
+  background: #e8eaf6;
+}
+
+.modern-form .d-flex.gap-2 {
+  gap: 10px;
+}
+
+.modern-form .btn-primary {
+  background: linear-gradient(90deg, #536dfe 0%, #1a237e 100%);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 28px;
+  margin-right: 10px;
+  box-shadow: 0 2px 8px rgba(83,109,254,0.08);
+  transition: background 0.2s;
+}
+
+.modern-form .btn-primary:hover {
+  background: linear-gradient(90deg, #1a237e 0%, #536dfe 100%);
+}
+
+.modern-form .btn-secondary {
+  background: #e3e6fd;
+  color: #1a237e;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.modern-form .btn-outline-primary {
+  border: 1.5px solid #536dfe;
+  color: #536dfe;
+  background: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 8px 18px;
+  margin-left: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.modern-form .btn-outline-primary:hover {
+  background: #536dfe;
+  color: #fff;
+}
+
+.modern-form .row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.modern-form .col {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+@media (max-width: 600px) {
+  .modern-container {
+    padding: 18px 6px 18px 6px;
+  }
+  .modern-container h3 {
+    font-size: 1.2rem;
+  }
+}
+</style>
+
+<div class="modern-container">
+  <h3 class="fw-bold mb-4">+ Add New Schedule for <?= strtoupper($day) ?></h3>
   
-  <form method="POST" class="p-4 bg-light rounded shadow">
+  <form method="POST" class="modern-form">
 
     <!-- Hidden Day Field -->
     <input type="hidden" name="day" value="<?= $day ?>">
@@ -98,8 +214,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Form Buttons -->
     <button class="btn btn-primary">Add Schedule</button>
-    <a href="dashboard.php?day=<?= $day ?>" class="btn btn-secondary">Cancel</a>
+    <a href="../bus_schedule.php?day=<?= $day ?>" class="btn btn-secondary">Cancel</a>
   </form>
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../../includes/footer.php'; ?>
