@@ -1,77 +1,70 @@
-<?php include 'includes/header.php'; include 'db.php'; ?>
+<?php include '../includes/header.php'; include '../includes/sidebar.php'; include '../db.php'; ?>
 
 <style>
-  body {
-    background: #f4f6fa;
-  }
-  .day-selector a {
-    min-width: 110px;
-    border-radius: 30px !important;
-    font-weight: 500;
-    transition: all 0.2s;
-  }
-  .day-selector .selected-day {
-    border: 2px solid #0d6efd !important;
-    background: #e9f2ff !important;
-    color: #0d6efd !important;
-    box-shadow: 0 2px 8px rgba(13,110,253,0.07);
-  }
-  .table-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #0d6efd;
-    letter-spacing: 0.01em;
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .table {
-    border-radius: 16px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 2px 16px rgba(13,110,253,0.04);
-  }
-  .table thead th {
-    vertical-align: middle;
+body {
+    background: linear-gradient(135deg, #e9f2ff 0%, #f4f6fa 100%);
+    min-height: 100vh;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: calc(100vw - 260px); /* leave space for sidebar, adjust if sidebar width changes */
+    margin-left: 260px; /* match sidebar width */
+    margin-right: 0;
+    padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+    box-sizing: border-box;
+}
+
+@media (max-width: 991.98px) {
+    .container {
+        max-width: 100vw;
+        margin-left: 0;
+        padding: 1.2rem 0.5rem;
+    }
+}
+/* Table header color */
+.table thead th, .table-light th {
+    background-color: #2563eb !important; /* Modern blue */
+    color: #fff !important;
+    border-color: #e0e7ef;
+}
+
+/* Font sizes */
+body {
+    font-size: 1.05rem;
+}
+.table th, .table td {
     font-size: 1rem;
-    letter-spacing: 0.03em;
-    background: #f8fafc;
-    color: #495057;
-    border-bottom: 2px solid #e9ecef;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  .table-hover tbody tr:hover {
-    background: #f1f7ff;
-    transition: background 0.2s;
-  }
-  .table tbody td {
-    vertical-align: middle;
-    font-size: 0.98rem;
-    color: #333;
-    border-top: 1px solid #f0f2f5;
-    padding-top: 0.85rem;
-    padding-bottom: 0.85rem;
-  }
-  .card {
-    border-radius: 18px;
-  }
-  .btn-action {
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-  }
-  .add-btn {
-    border-radius: 30px;
+}
+.table-title {
+    font-size: 1.15rem;
     font-weight: 600;
-    padding: 0.7rem 2rem;
-    font-size: 1.1rem;
-  }
+}
+h2 {
+    font-size: 2.1rem;
+}
+.fs-5 {
+    font-size: 1.15rem !important;
+}
+.btn, .btn-action, .add-btn {
+    font-size: 1rem;
+}
+.day-selector .btn {
+    font-size: 1rem;
+    padding: 0.45rem 1.1rem;
+}
+@media (max-width: 991.98px) {
+    body {
+        font-size: 0.98rem;
+    }
+    .table th, .table td {
+        font-size: 0.95rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
 </style>
 
 <?php
@@ -86,7 +79,7 @@ $selected_day = $_GET['day'] ?? 'Sunday';
     $days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     foreach ($days as $day) {
       $btnClass = $selected_day === $day ? "btn btn-outline-primary selected-day" : "btn btn-outline-secondary";
-      echo "<a href='dashboard.php?day=$day' class='$btnClass'>$day</a>";
+      echo "<a href='bus_schedule.php?day=$day' class='$btnClass'>$day</a>";
     }
     ?>
   </div>
@@ -142,8 +135,8 @@ $selected_day = $_GET['day'] ?? 'Sunday';
                   <td>{$r['no_of_bus']}</td>
                   <td>{$r['comment']}</td>
                   <td class='text-center'>
-                    <a href='edit.php?id={$r['id']}' class='btn btn-outline-primary btn-action me-1' title='Edit'><i class='bi bi-pencil'></i></a>
-                    <a href='delete.php?id={$r['id']}' onclick='return confirm(\"Are you sure?\")' class='btn btn-outline-danger btn-action' title='Delete'><i class='bi bi-trash'></i></a>
+                    <a href='bus_schedule_operations/edit.php?id={$r['id']}' class='btn btn-outline-primary btn-action me-1' title='Edit'><i class='bi bi-pencil'></i></a>
+                    <a href='bus_schedule_operations/delete.php?id={$r['id']}' onclick='return confirm(\"Are you sure?\")' class='btn btn-outline-danger btn-action' title='Delete'><i class='bi bi-trash'></i></a>
                   </td>
                 </tr>";
               }
@@ -156,7 +149,7 @@ $selected_day = $_GET['day'] ?? 'Sunday';
       </div>
     </div>
     <div class="card-footer bg-white border-0 text-end">
-      <a href="add.php?day=<?= $selected_day ?>" class="btn btn-success shadow-sm add-btn">
+      <a href="bus_schedule_operations/add.php?day=<?= $selected_day ?>" class="btn btn-success shadow-sm add-btn">
         <i class="bi bi-plus-circle me-2"></i> Add New Schedule
       </a>
     </div>
@@ -164,4 +157,4 @@ $selected_day = $_GET['day'] ?? 'Sunday';
 
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
