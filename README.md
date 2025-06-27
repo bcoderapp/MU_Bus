@@ -12,7 +12,7 @@ This project leverages Python technologies for both the backend and frontend:
 
 ## 🛠 Features
 
-### Admin (Actor)
+### Admin
 - ✅ Login/Sign-up
 - ✅ Add/Update/Delete Schedule
 - ✅ Demand Analysis
