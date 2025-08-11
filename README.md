@@ -1,142 +1,139 @@
-# 🚌 MU_Bus System
+# MU-BUS – Bus Management System for Metropolitan University
 
-## Overview
+## 📌 Overview
+MU-BUS is a **real-time bus schedule management system** designed for **Metropolitan University**.  
+It replaces the outdated PDF-based schedule system with a **modern, connected platform** that improves accessibility, communication, and efficiency for students, faculty, and staff.
 
-MU_Bus is a smart bus management system designed to optimize transportation schedules and respond to user demands in a university or institutional setting. The system enables two primary actors—Admin (Actor) and User—to interact with various features related to schedule management, notifications, and demand analysis.
-
-This project leverages Python technologies for both the backend and frontend:
-- **Backend**: FastAPI (modern, fast Python web framework)
-- **Frontend**: PyScript (Python in the browser using HTML + Pyodide)
-
----
-
-## 🛠 Features
-
-### Admin
-- ✅ Login/Sign-up
-- ✅ Add/Update/Delete Schedule
-- ✅ Demand Analysis
-- ✅ Add/Update/Delete Notification
-- ✅ Add/Update/Delete Decision Pool
-- ✅ Logout
-
-### User
-- ✅ Login/Sign-up
-- ✅ View Bus Schedule
-- ✅ Add/Update/Delete Need
-- ✅ Get Notified
-- ✅ Response to Pool
-- ✅ Logout
-<!--
----
-
-## 🧰 Tech Stack
-
-| Layer       | Technology     |
-|-------------|----------------|
-| Backend     | FastAPI        |
-| Frontend    | PyScript (HTML + Python) |
-| Database    | PostgreSQL or SQLite |
-| Authentication | JWT (via FastAPI) |
-| Deployment  | Docker + Gunicorn/Uvicorn |
+The system consists of:
+- **Admin Web Application** – For managing schedules, routes, buses, and announcements.
+- **User Mobile Application** – Built with Flutter for quick and easy access to schedules, notifications, and feedback submission.
 
 ---
 
-## 📁 Project Structure
+## 🚀 Features
 
-```bash
-mu_bus/
-│
-├── backend/
-│   ├── main.py                # FastAPI main app
-│   ├── models.py              # Pydantic models and DB schemas
-│   ├── crud.py                # CRUD logic
-│   ├── auth.py                # JWT Authentication
-│   └── database.py            # Database connection and init
-│
-├── frontend/
-│   ├── index.html             # HTML + PyScript setup
-│   ├── scripts/
-│   │   ├── login.py           # Login/signup logic
-│   │   ├── schedule.py        # View/Add bus schedule
-│   │   ├── notification.py    # Notification logic
-│   │   └── demand.py          # Demand pool analysis
-│
-├── requirements.txt           # Python dependencies
-├── Dockerfile                 # Docker config
-└── README.md
-```
+### **Admin Web Application**
+- Secure admin login/logout
+- Dashboard overview
+- Manage bus schedules, routes, and bus details
+- Announcements and real-time notifications
+- Demand analysis and service planning
+- Developer support access
+
+### **User Mobile Application**
+- User signup/login
+- View and search bus schedules
+- Receive instant push notifications
+- Profile management
+- Submit demands and feedback
+- View announcements and updates
 
 ---
 
-## 🚀 Getting Started
+## 🖼 Screenshots
 
-### Prerequisites
-- Python 3.10+
-- Docker (optional for containerization)
+> Replace the image links below with actual paths to your images inside the repository (e.g., `/screenshots/home.png`).
 
-### Installation
+### **Mobile App**
+| Home Screen | Bus Schedule | Notifications |
+|-------------|--------------|---------------|
+| ![Home](screenshots/mobile_home.png) | ![Schedule](screenshots/mobile_schedule.png) | ![Notifications](screenshots/mobile_notifications.png) |
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/mu_bus.git
-cd mu_bus
-```
-
-2. **Create virtual environment**
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
-3. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-4. **Run the FastAPI backend**
-```bash
-uvicorn backend.main:app --reload
-```
-
-5. **Open the frontend**
-Just open `frontend/index.html` in your browser. Ensure PyScript is enabled.
+### **Admin Web Panel**
+| Dashboard | Schedule Management | Announcements |
+|-----------|--------------------|---------------|
+| ![Dashboard](screenshots/admin_dashboard.png) | ![Schedule Management](screenshots/admin_schedule.png) | ![Announcements](screenshots/admin_announcements.png) |
 
 ---
 
-## 🧪 Running Tests
+## 🛠️ Technology Stack
 
-```bash
-pytest tests/
-```
-
----
-
-## 🧩 API Endpoints
-
-Example endpoints from FastAPI:
-- `POST /login`
-- `GET /schedules`
-- `POST /notifications`
-- `GET /decision-pool`
-
-Interactive docs available at:  
-`http://localhost:8000/docs`
+| Component             | Technology Used |
+|-----------------------|-----------------|
+| **Frontend (Web)**    | HTML, CSS, Bootstrap |
+| **Frontend (Mobile)** | Flutter, Dart |
+| **Backend**           | PHP, MySQL |
+| **Database**          | MySQL |
+| **Server**            | Apache (XAMPP) |
 
 ---
 
-## 🔒 Authentication
-
-JWT tokens are issued on login and must be included in request headers for protected endpoints.
-
-```
-Authorization: Bearer <token>
-```
+## 📂 Database Structure
+Main tables include:
+- `admin` – Admin login credentials
+- `developer` – Developer access details
+- `users` – Student and staff accounts
+- `bus_schedule` – Complete bus schedule data
+- `routes` – Predefined bus routes
+- `bus_types` – Types of buses
+- `bus_demand` – Demand submissions
+- `notifications` – Alerts and announcements
+- `support_requests` – Feedback and bug reports
 
 ---
 
-## 📬 Contributing
+## 📊 System Models
+- **Context Diagram**
+- **Use Case Diagram**
+- **Entity-Relationship Diagram (ERD)**
+- **System Sequence Diagram**
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+---
 
--->
+## ⚙️ Hardware & Software Requirements
+
+**Admin Side:**
+- Intel i3 or higher, 4GB RAM, 500GB storage
+- HTML, CSS, Bootstrap, PHP, MySQL, Apache (XAMPP)
+
+**User Side:**
+- Android smartphone (2GB RAM+)
+- Flutter SDK, Dart, PHP API
+
+---
+
+## 🏗️ Architecture
+MU-BUS follows a **client–server architecture**:
+- **Clients:** Admin web panel, mobile application
+- **Server:** PHP & MySQL handling requests and business logic
+- **API Layer:** Secure communication between clients and server
+- **Database:** Centralized MySQL for real-time synchronization
+
+---
+
+## 📅 Methodology
+The system was developed using the **Agile Software Development Model**:
+1. Requirement gathering
+2. System analysis
+3. UI/UX design
+4. Development (Web + Mobile)
+5. Integration
+6. Testing (unit, integration, user acceptance)
+7. Deployment (localhost demo)
+
+---
+
+## 🎯 Objectives
+- Replace PDF-based schedules with a real-time system
+- Enable centralized management of transport operations
+- Provide instant communication via notifications
+- Support secure authentication for admins and users
+- Collect demand data for improved service planning
+
+---
+
+## 📈 Future Enhancements
+- GPS-based bus tracking
+- Ticket booking system
+- AI-based demand predictions
+
+---
+
+## 👨‍💻 Authors
+- **[Borna Rani Bhowmik](https://github.com/bornabhowmik)**  
+- **[Md. Yasin Ahmed Mahi](https://github.com/mdyasinahmed)**
+
+---
+
+## 📜 License
+This project is for **academic purposes** and is not licensed for commercial use.
