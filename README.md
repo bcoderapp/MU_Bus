@@ -32,8 +32,6 @@ The system consists of:
 
 ## 🖼 Screenshots
 
-> Replace the image links below with actual paths to your images inside the repository (e.g., `/screenshots/home.png`).
-
 ### **Mobile App**
 | Home Screen | Bus Schedule | Notifications |
 |-------------|--------------|---------------|
